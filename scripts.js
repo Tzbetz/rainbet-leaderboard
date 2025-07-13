@@ -22,6 +22,5 @@ async function checkStreamStatus() {
   }
 }
 
-// Initial call + periodic refresh
 checkStreamStatus();
 setInterval(checkStreamStatus, 15000);
