@@ -69,7 +69,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(270deg, #181818, #FFD600, #00ffcc, #181818, #ff0055);
   background-size: 400% 400%;
-  animation: gradientBG 18s ease infinite;
+  animation: gradientBG 27s ease infinite;
   color: #fff;
   text-align: center;
 }

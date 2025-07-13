@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Badges</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff004f, #14001f);
+      color: #fff;
+    }
+
+    .badge-info-container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #181818;
+      border-radius: 18px;
+      box-shadow: 0 0 32px #FFD600;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .badge-list {
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .badge-item {
+      background: #222;
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: 0 0 12px #FFD60033, 0 0 5px #FFD60011 inset;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      justify-content: flex-start;
+      transition: 0.2s ease;
+    }
+
+    .badge-item:hover {
+      transform: scale(1.02);
+      background: #2a2a2a;
+    }
+
+    .badge-icon {
+      width: 64px;
+      height: 64px;
+      aspect-ratio: 1 / 1;
+      background: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .badge-details {
+      text-align: left;
+    }
+
+    .badge-title {
+      font-size: 1.2rem;
+      color: #FFD600;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .badge-desc {
+      font-size: 1rem;
+      color: #bbb;
+    }
+
+    .back-button {
+      margin-top: 2rem;
+      display: inline-block;
+      background: #FFD600;
+      color: #000;
+      padding: 0.6rem 1.2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s ease;
+      border: none;
+      font-size: 1rem;
+      box-shadow: 0 0 10px #FFD60088;
+    }
+
+    .back-button:hover {
+      background: #e6c200;
+    }
+
+    @media (max-width: 600px) {
+      .badge-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .badge-details {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="badge-info-container">
+    <h1>🏅 Kick Stream Badges</h1>
+    <p style="color:#aaa; font-size: 0.9rem; margin-top: -0.5rem;">Earn these badges by engaging with the stream and community</p>
+    <p>These badges are awarded on the <strong>Kick livestream</strong>, not the Rainbet leaderboard!</p>
+
+    <div class="badge-list">
+      <div class="badge-item">
+        <div class="badge-icon">
+          <img src="icons/og.png" alt="OG Badge" style="width: 100%; height: 100%; background: #000;">
+        </div>
+        <div class="badge-details">
+          <div class="badge-title">OG</div>
+          <div class="badge-desc">Earned by following the stream for 2+ months. Grants access to exclusive rewards and events.</div>
+        </div>
+      </div>
+
+      <div class="badge-item">
+        <div class="badge-icon">
+          <img src="icons/vip.png" alt="VIP Badge" style="width: 100%; height: 100%; background: #000;">
+        </div>
+        <div class="badge-details">
+          <div class="badge-title">VIP</div>
+          <div class="badge-desc">Awarded for gifting 3 subs or subscribing for 2+ months. Unlocks premium perks and bonuses.</div>
+        </div>
+      </div>
+    </div>
+
+    <p><strong>🎉 OG & VIP Badge Holders Get Special Access!</strong><br>
+    🌀 Exclusive Wheel Spin Entry — Only OG and VIP badge holders can spin the Wheel of Entry.<br>
+    🎁 Plus, many upcoming giveaways reserved just for OGs and VIPs!</p>
+
+    <a href="index.html" class="back-button">⬅️ Back to Main Page</a>
+  </div>
+</body>
+</html>
