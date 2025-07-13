@@ -19,4 +19,4 @@ async function checkStreamStatus() {
 }
 
 checkStreamStatus();
-setInterval(checkStreamStatus, 15000); // Refresh every 15 sec
+setInterval(checkStreamStatus, 15000);
