@@ -8,51 +8,71 @@
 </head>
 <body>
 
-  <!-- Header with centered avatar and title -->
+  <!-- Header with centered avatar and title in a flat box -->
   <header class="mobile-header">
-    <div class="logo-container">
-      <img src="icons/owner.jpg" alt="TonyZ" />
+    <div class="welcome-box">
+      <img src="icons/owner.jpg" alt="Tzbetz Icon" class="tzbetz-icon" />
+      <h1>Welcome to Tzbetz Official Website</h1>
+      <p class="hosted-by">Hosted by TonyZ
+        <a href="https://kick.com/tzbetz" target="_blank" class="live-link">Watch TonyZ Live</a>
+      </p>
+      <span id="status-label" class="status"></span>
+      <!-- Only the Kick status will be shown when offline -->
     </div>
-    <h1>Welcome to Tzbetz Official Website</h1>
-    <p class="hosted-by">Hosted by TonyZ</p>
-    <span id="status-label" class="status">Checking...</span>
+    <div id="offline-popup" class="popup-hidden">
+      <div class="popup-content">
+          <img src="icons/owner.jpg" alt="Avatar" />
+          <h2>Status</h2>
+          <p>The stream is offline.</p>
+          <div class="kick-status">
+            <img src="icons/kick.svg" class="kick-icon" alt="Kick" />
+            <span class="status-text"><strong>Currently Offline</strong></span>
+          </div>
+          <button id="close-popup">Close</button>
+      </div>
+    </div>
   </header>
 
-  <!-- Hero button -->
-  <section class="hero-banner">
-    <h2>🎥 Watch TonyZ Live</h2>
-    <a href="https://kick.com/tzbetz" target="_blank" class="hero-button">Watch TonyZ Live</a>
-  </section>
+  <!-- Hero button removed, now a small link in header -->
 
   <!-- Action cards -->
   <section class="quick-actions">
-    <a href="leaderboard.html" class="action-card">🏆 RainBet Leaderboard<br><span>See Top Wager Earners</span></a>
-    <a href="badges.html" class="action-card">🎖️ Badge Info<br><span>Unlock OG & VIP Badges</span></a>
-    <a href="giveaways.html" class="action-card">🎰 Prize Schedule<br><span>Daily, Weekly & Monthly Prizes</span></a>
-    <a href="#signup" class="action-card">👤 Join Now<br><span>Start Earning Kick Points</span></a>
+    <a href="leaderboard.html" class="action-card"><span class="card-icon">🏆</span><br>Rainbet Leaderboard<br><span class="card-subtitle main-sub">See Top Wager Earners</span></a>
+    <a href="badges.html" class="action-card"><span class="card-icon">🎖️</span><br>Badge Info<br><span class="card-subtitle">Unlock OG & VIP Badges</span></a>
+    <a href="giveaways.html" class="action-card"><span class="card-icon">🎰</span><br>Prize Schedule<br><span class="card-subtitle">Daily, Weekly & Monthly Prizes</span></a>
+    <a href="#signup" class="action-card"><span class="card-icon">👤</span><br>Join Now<br><span class="card-subtitle">Start Earning Kick Points</span></a>
   </section>
 
   <!-- Referral + Socials -->
   <section class="follow-tonyz">
-    <h2>🎰 Sign up & Follow TonyZ</h2>
-    <p>
-      Sign up with code <strong>"tzbetz"</strong> 👉 
-      <a href="https://rainbet.com/?r=tzbetz" target="_blank">rainbet.com/?r=tzbetz</a>
-    </p>
-
-    <div class="social-icons">
-      <a href="https://www.instagram.com/tzbetz" target="_blank">
-        <img src="icons/instagram.svg" alt="Instagram" />
-      </a>
-      <a href="https://www.youtube.com/@tzbetz" target="_blank">
-        <img src="icons/youtube.svg" alt="YouTube" />
-      </a>
-      <a href="https://x.com/tzbetz" target="_blank">
-        <img src="icons/x.svg" alt="X" />
-      </a>
+    <div class="follow-box">
+      <h2>🎰 Join the Action with TonyZ</h2>
+      <p class="headline">🔥 Sign up, follow, and let’s run it up together!</p>
+      <a href="https://rainbet.com/?r=tzbetz" class="btn main-cta sign-up">🎰 Sign Up with Code “tzbetz”</a>
+      <div class="button-container social-icons">
+        <a href="https://www.instagram.com/tzbetz" target="_blank" class="btn instagram-btn" title="Follow on Instagram">
+          <img src="icons/instagram.svg" alt="Instagram" />
+          Follow on Instagram
+        </a>
+        <a href="https://www.youtube.com/@tzbetz" target="_blank" class="btn youtube-btn" title="Subscribe on YouTube">
+          <img src="icons/youtube.svg" alt="YouTube" />
+          Subscribe on YouTube
+        </a>
+        <a href="https://x.com/tzbetz" target="_blank" class="btn x-btn" title="Follow on X">
+          <img src="icons/x.svg" alt="X" />
+          Follow on X
+        </a>
+        <a href="https://discord.gg/bp8BgsvxrR" target="_blank" class="btn discord-btn" title="Join Discord">
+          <img src="icons/discord.svg" alt="Discord" />
+          Join Discord
+        </a>
+        <a href="https://kick.com/tzbetz" target="_blank" class="btn live-btn" title="Watch TonyZ Live">
+          <span class="icon live-icon">🎥</span>
+          Watch Live
+        </a>
+      </div>
+      <p class="tagline">Let’s run it up! 💸🔥</p>
     </div>
-
-    <p class="tagline">Let’s run it up! 💸🔥</p>
   </section>
 
   <!-- Footer -->
@@ -61,5 +81,80 @@
   </footer>
 
   <script src="scripts.js"></script>
+  <script>
+    // Check Kick live status via API and update status label and popup
+    document.addEventListener('DOMContentLoaded', function() {
+      var statusLabel = document.getElementById('status-label');
+      var popup = document.getElementById('offline-popup');
+      var closeBtn = document.getElementById('close-popup');
+      var popupStatus = document.getElementById('popup-status');
+      var popupMessage = document.getElementById('popup-message');
+      function showPopup() {
+        popup.classList.remove('popup-hidden');
+        popup.classList.add('popup-visible');
+      }
+      function hidePopup() {
+        popup.classList.remove('popup-visible');
+        popup.classList.add('popup-hidden');
+      }
+      // Always show popup
+      showPopup();
+      // Simulate Kick API call (replace with real API if available)
+      function updateStatus(isLive) {
+        if (isLive) {
+          statusLabel.textContent = 'Online';
+          statusLabel.classList.remove('offline');
+          statusLabel.classList.add('live');
+          popupStatus.textContent = 'Status: Online';
+          popupMessage.textContent = 'TonyZ is live on Kick! Click below to watch.';
+          // Remove kick-status if present
+          var ks = document.getElementById('kick-status-indicator');
+          if (ks) ks.remove();
+        } else {
+          statusLabel.textContent = '';
+          statusLabel.classList.remove('live');
+          statusLabel.classList.add('offline');
+          popupStatus.textContent = 'Status: Offline';
+          popupMessage.textContent = 'The stream is currently offline. Please check back later!';
+          // Remove previous offline text/button if present
+          var prevOffline = statusLabel.parentNode.querySelector('.offline-text');
+          if (prevOffline) prevOffline.remove();
+          // Add kick-status below status label if not present
+          if (!document.getElementById('kick-status-indicator')) {
+            var ks = document.createElement('div');
+            ks.className = 'kick-status';
+            ks.id = 'kick-status-indicator';
+            ks.innerHTML = '<img src="icons/kick.svg" alt="Kick" class="kick-icon" /> <span class="status-text">Currently <strong>Offline</strong></span>';
+            statusLabel.parentNode.insertBefore(ks, statusLabel.nextSibling);
+          }
+          // Add kick-status to popup if not present
+          if (!document.getElementById('kick-status-popup')) {
+            var ks2 = document.createElement('div');
+            ks2.className = 'kick-status';
+            ks2.id = 'kick-status-popup';
+            ks2.innerHTML = '<img src="icons/kick.svg" alt="Kick" class="kick-icon" /> <span class="status-text">Currently <strong>Offline</strong></span>';
+            popupMessage.parentNode.insertBefore(ks2, popupMessage.nextSibling);
+          }
+        }
+      }
+      // Example: Simulate API call with timeout (replace with real fetch)
+      setTimeout(function() {
+        // Set to true for online, false for offline
+        var isLive = false; // Change to true to simulate online
+        updateStatus(isLive);
+      }, 1200);
+      if (closeBtn) {
+        closeBtn.onclick = hidePopup;
+      }
+      popup.addEventListener('click', function(e) {
+        if (e.target === popup) hidePopup();
+      });
+    });
+  </script>
+
+  <div class="kick-status">
+    <img src="icons/kick.svg" alt="Kick" class="kick-icon" />
+    <span class="status-text">Currently <strong>Offline</strong></span>
+  </div>
 </body>
 </html>
