@@ -7,41 +7,47 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="owner-info">
-      <div class="owner-circle">
-        <img src="icons/owner.jpg" alt="TonyZ" />
-      </div>
-      <div>
-        <h1>👑 Welcome to Tzbetz Official Website</h1>
-        <p class="hosted-by">Hosted by TonyZ</p>
-      </div>
+
+  <!-- Header with centered avatar and title -->
+  <header class="mobile-header">
+    <div class="logo-container">
+      <img src="icons/owner.jpg" alt="TonyZ" />
     </div>
+    <h1>👑 Welcome to Tzbetz Official Website</h1>
+    <p class="hosted-by">Hosted by TonyZ</p>
     <span id="status-label" class="status">Checking...</span>
   </header>
 
-  <section class="dashboard">
-    <a href="leaderboard.html" class="dash-card">🏆 <span>RainBet Leaderboard</span></a>
-    <a href="badges.html" class="dash-card">🎖️ <span>Badge Info</span></a>
-    <a href="giveaways.html" class="dash-card">🎰 <span>Prize Schedule</span></a>
-    <a href="#signup" class="dash-card">👤 <span>Join Now</span></a>
+  <!-- Hero button -->
+  <section class="hero-banner">
+    <h2>🎥 Watch TonyZ Live</h2>
+    <a href="https://kick.com/tzbetz" target="_blank" class="hero-button">Watch TonyZ Live</a>
   </section>
 
+  <!-- Action cards -->
+  <section class="quick-actions">
+    <a href="leaderboard.html" class="action-card">🏆 RainBet Leaderboard<br><span>See Top Wager Earners</span></a>
+    <a href="badges.html" class="action-card">🎖️ Badge Info<br><span>Unlock OG & VIP Badges</span></a>
+    <a href="giveaways.html" class="action-card">🎰 Prize Schedule<br><span>Daily, Weekly & Monthly Prizes</span></a>
+    <a href="#signup" class="action-card">👤 Join Now<br><span>Start Earning Kick Points</span></a>
+  </section>
+
+  <!-- Referral + Socials -->
   <section class="follow-tonyz">
     <h2>🎰 Sign up & Follow TonyZ</h2>
     <p>
-      Sign up on Rainbet with my code <strong>"tzbetz"</strong>: 
-      👉 <a href="https://rainbet.com/?r=tzbetz" target="_blank">rainbet.com/?r=tzbetz</a>
+      Sign up with code <strong>"tzbetz"</strong> 👉 
+      <a href="https://rainbet.com/?r=tzbetz" target="_blank">rainbet.com/?r=tzbetz</a>
     </p>
 
     <div class="social-icons">
-      <a href="https://www.instagram.com/tzbetz" target="_blank" aria-label="Instagram">
+      <a href="https://www.instagram.com/tzbetz" target="_blank">
         <img src="icons/instagram.svg" alt="Instagram" />
       </a>
-      <a href="https://www.youtube.com/@tzbetz" target="_blank" aria-label="YouTube">
+      <a href="https://www.youtube.com/@tzbetz" target="_blank">
         <img src="icons/youtube.svg" alt="YouTube" />
       </a>
-      <a href="https://x.com/tzbetz" target="_blank" aria-label="X">
+      <a href="https://x.com/tzbetz" target="_blank">
         <img src="icons/x.svg" alt="X" />
       </a>
     </div>
@@ -49,6 +55,7 @@
     <p class="tagline">Let’s run it up! 💸🔥</p>
   </section>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <p>Developed by Ark</p>
   </footer>
