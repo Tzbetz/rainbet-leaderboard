@@ -186,6 +186,7 @@
   </style>
 </head>
 <body>
+  <div class="rain-bubbles-bg"></div>
   <header class="mobile-header">
     <div class="welcome-box">
       <img src="icons/owner.jpg" alt="Tzbetz Icon" class="tzbetz-icon" />
@@ -195,6 +196,25 @@
   </header>
 
   <main class="container">
+    <!-- ...existing code... -->
+  <script>
+    // Popup logic for Join Now
+    document.addEventListener('DOMContentLoaded', function() {
+      var joinBtn = document.getElementById('joinNowBtn');
+      var popup = document.getElementById('signup-popup');
+      var closeBtn = document.getElementById('closeSignupPopup');
+      if (joinBtn && popup && closeBtn) {
+        joinBtn.onclick = function() {
+          popup.classList.remove('popup-hidden');
+          popup.classList.add('popup-visible');
+        };
+        closeBtn.onclick = function() {
+          popup.classList.remove('popup-visible');
+          popup.classList.add('popup-hidden');
+        };
+      }
+    });
+  </script>
 
     <h2>🏆 Rainbet Leaderboard</h2>
     <p>Track your position & win from the $1,000 prize pool!</p>
@@ -273,9 +293,13 @@
       </div>
     </div>
 
-    <div class="footer-link">
-      📌 Need help? <a href="help.html">Create a ticket on Discord</a><br>
-      🔗 <a href="https://discord.gg/bp8BgsvxrR" target="_blank">Join our Discord</a>
+    <div class="footer-link" style="margin-top:2.5rem; text-align:center;">
+      <span style="font-size:1.15rem;">
+        <span style="font-size:1.3em; vertical-align:middle; margin-right:0.2em;">📌</span>
+        <span style="color:#fff; font-weight:500;">Need help?</span>
+      </span>
+      <br>
+      <a href="https://discord.gg/bp8BgsvxrR" target="_blank" style="display:inline-block; margin-top:14px; background:#FFD600; color:#222; font-weight:700; font-size:1.15rem; padding:0.8rem 2.1rem; border-radius:12px; text-decoration:none; box-shadow:0 0 12px #FFD60088; transition:box-shadow 0.2s;">Create a ticket on Discord</a>
     </div>
   </main>
 

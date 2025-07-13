@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Rain bubble background -->
+  <div class="rain-bubbles-bg"></div>
+
+  <!-- Rainbet logo background layer -->
+  <div id="rainbet-bg-logos" class="rainbet-bg-logos"></div>
 
   <!-- Header with centered avatar and title in a flat box -->
   <header class="mobile-header">
@@ -39,8 +44,8 @@
   <section class="quick-actions">
     <a href="leaderboard.html" class="action-card"><span class="card-icon">🏆</span><br>Rainbet Leaderboard<br><span class="card-subtitle main-sub">See Top Wager Earners</span></a>
     <a href="badges.html" class="action-card"><span class="card-icon">🎖️</span><br>Badge Info<br><span class="card-subtitle">Unlock OG & VIP Badges</span></a>
-    <a href="giveaways.html" class="action-card"><span class="card-icon">🎰</span><br>Prize Schedule<br><span class="card-subtitle">Daily, Weekly & Monthly Prizes</span></a>
-    <a href="#signup" class="action-card"><span class="card-icon">👤</span><br>Join Now<br><span class="card-subtitle">Start Earning Kick Points</span></a>
+    <a href="giveaways.html" class="action-card"><span class="card-icon">🎰</span><br>Giveaways<br><span class="card-subtitle">Daily, Weekly & Monthly Prizes</span></a>
+    <a href="#signup" class="action-card" id="joinNowBtn"><span class="card-icon">👤</span><br>Join Now<br><span class="card-subtitle">Start Earning Kick Points</span></a>
   </section>
 
   <!-- Referral + Socials -->
@@ -77,6 +82,16 @@
 
   <!-- Footer -->
   <footer class="site-footer">
+  <!-- Rainbet Signup Popup (hidden by default, only appears on Join Now click) -->
+  <div id="signup-popup" class="popup-hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:none; justify-content:center; align-items:center; z-index:9999;">
+    <div style="background:white; padding:2rem; border-radius:14px; max-width:400px; width:90%; color:#222; text-align:center; box-shadow:0 0 20px #FFD60088;">
+      <h2 style="margin-top:0;">Sign Up for Rainbet</h2>
+      <p>Sign up on Rainbet and start wagering to earn your spot on the leaderboard!</p>
+      <a href="https://rainbet.com/?r=tzbetz" target="_blank" style="display:inline-block; background:#FFD600; color:#000; font-weight:bold; padding:0.7rem 1.5rem; border-radius:10px; text-decoration:none; margin-bottom:1rem; box-shadow:0 0 10px #FFD60088;">Go to Rainbet Signup</a>
+      <br>
+      <button id="closeSignupPopup" style="margin-top:1rem; padding:0.5rem 1.2rem; border:none; background:#222; color:white; border-radius:8px; font-size:1rem; cursor:pointer;">Close</button>
+    </div>
+  </div>
     <div style="max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 2.2rem; align-items: center;">
       <a href="terms.html" style="color:#FFD600; text-decoration:underline; font-weight:600;">📜 Terms & Conditions</a>
       <a href="mailto:support@tzbetz.com" style="color:#FFD600; text-decoration:underline; font-weight:600;">Contact Us</a>
@@ -86,6 +101,80 @@
   </footer>
 
   <script src="scripts.js"></script>
+  <style>
+    .rainbet-bg-logos {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 7vw;
+    }
+    .rainbet-bg-logos .rainbet-logo {
+      width: 80px;
+      opacity: 0.13;
+      filter: drop-shadow(0 2px 8px #FFD60088);
+      will-change: transform;
+      animation-name: floatRainbetLogo;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      /* animation-duration and animation-delay are set via JS */
+      /* Each logo will get a different animation delay via JS */
+      --rot: 0deg;
+    }
+    @keyframes floatRainbetLogo {
+      0% { transform: translateY(0) scale(1) rotate(var(--rot)); }
+      50% { transform: translateY(-30px) scale(1.04) rotate(var(--rot)); }
+      100% { transform: translateY(0) scale(1) rotate(var(--rot)); }
+    }
+  </style>
+  <script>
+    // Animate rainbet logos in grid with very slow floating effect
+    document.addEventListener('DOMContentLoaded', function() {
+      var grid = document.getElementById('rainbet-bg-logos');
+      if (grid && grid.children.length === 0) {
+        var cols = 6, rows = 3, total = cols * rows;
+        for (let i = 0; i < total; i++) {
+          let img = document.createElement('img');
+          img.src = 'icons/rainbet.png';
+          img.className = 'rainbet-logo';
+          // Random rotation for each logo
+          let rot = Math.floor(Math.random() * 360);
+          img.style.setProperty('--rot', rot + 'deg');
+          // Staggered animation delay for natural effect
+          img.style.animationDelay = (i * 0.8) + 's';
+          // Optional: randomize animation duration slightly (faster base)
+          img.style.animationDuration = (12 + Math.random() * 4) + 's';
+          grid.appendChild(img);
+        }
+      }
+    });
+    // Popup logic for Join Now
+    document.addEventListener('DOMContentLoaded', function() {
+      var joinBtn = document.getElementById('joinNowBtn');
+      var popup = document.getElementById('signup-popup');
+      var closeBtn = document.getElementById('closeSignupPopup');
+      if (joinBtn && popup && closeBtn) {
+        joinBtn.onclick = function(e) {
+          e.preventDefault();
+          popup.style.display = 'flex';
+        };
+        closeBtn.onclick = function() {
+          popup.style.display = 'none';
+        };
+        popup.addEventListener('click', function(e) {
+          if (e.target === popup) {
+            popup.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
   <script>
     // Check Kick live status via API and update status label and popup
     document.addEventListener('DOMContentLoaded', function() {
